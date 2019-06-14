@@ -1,0 +1,238 @@
+/bin/alsaunmute:#!/bin/sh
+/bin/amuFormat.sh:#!/bin/sh
+/bin/bashbug:#!/bin/sh -
+/bin/bashbug-64:#!/bin/sh -
+/bin/bond2team:#!/bin/bash
+/bin/bzcmp:#!/bin/sh
+/bin/bzdiff:#!/bin/sh
+/bin/bzegrep:#!/bin/sh
+/bin/bzfgrep:#!/bin/sh
+/bin/bzgrep:#!/bin/sh
+/bin/bzless:#!/bin/sh
+/bin/bzmore:#!/bin/sh
+/bin/c89:#!/bin/sh
+/bin/c99:#!/bin/sh
+/bin/ca-legacy:#!/bin/sh
+/bin/caribou-preferences:#!/bin/sh
+/bin/catchsegv:#!/bin/sh
+/bin/compile_et:#!/bin/sh
+/bin/dracut:#!/bin/bash --norc
+/bin/dvipdf:#!/bin/sh
+/bin/eps2eps:#!/bin/sh
+/bin/esmtp-wrapper:#!/bin/bash
+/bin/eu-make-debug-archive:#!/bin/sh
+/bin/fakeroot:#!/bin/sh
+/bin/fakeroot-sysv:#!/bin/sh
+/bin/fakeroot-tcp:#!/bin/sh
+/bin/font2c:#!/bin/sh
+/bin/gendiff:#!/bin/sh
+/bin/gnome-session:#!/bin/sh
+/bin/google-chrome:#!/bin/bash
+/bin/google-chrome-stable:#!/bin/bash
+/bin/gpg-zip:#!/bin/sh
+/bin/grub2-kbdcomp:#!/bin/sh
+/bin/gsbj:#!/bin/sh
+/bin/gsdj:#!/bin/sh
+/bin/gsdj500:#!/bin/sh
+/bin/gslj:#!/bin/sh
+/bin/gslp:#!/bin/sh
+/bin/gsnd:#!/bin/sh
+/bin/guild:#!/bin/sh
+/bin/guile2-tools:#!/bin/sh
+/bin/guile-tools:#!/bin/sh
+/bin/gunzip:#!/bin/sh
+/bin/gvfs-less:#!/bin/sh
+/bin/gzexe:#!/bin/sh
+/bin/hpcups-update-ppds:#!/bin/bash
+/bin/ibus-setup:#!/bin/sh
+/bin/icu-config:#!/bin/sh
+/bin/icu-config-64:#!/bin/sh
+/bin/kernel-install:#!/bin/bash
+/bin/kmodtool:#!/bin/bash
+/bin/krb5-config:#!/bin/sh
+/bin/lesspipe.sh:#!/bin/sh
+/bin/libwmf-fontmap:#!/bin/sh
+/bin/linux-boot-prober:#!/bin/sh
+/bin/lprsetup.sh:#!/bin/sh
+/bin/lsb_release:#!/bin/sh
+/bin/lsinitrd:#!/bin/bash
+/bin/lspgpot:#!/bin/sh
+/bin/lz:#!/bin/sh
+/bin/mailq:#!/bin/bash
+/bin/mariadb-service-convert:#!/bin/bash
+/bin/mbim-network:#!/bin/sh
+/bin/mcheck:#!/bin/sh
+/bin/mcomp:#!/bin/sh
+/bin/mkfontdir:#!/bin/sh
+/bin/mkinitrd:#!/bin/bash --norc
+/bin/msql2mysql:#!/bin/sh
+/bin/mxtar:#!/bin/sh
+/bin/mysqlbug:#!/bin/sh
+/bin/mysql_config-64:#!/bin/sh
+/bin/mysqld_safe:#!/bin/sh
+/bin/mysql_install_db:#!/bin/sh
+/bin/mysql_secure_installation:#!/bin/sh
+/bin/ncurses6-config:#!/bin/sh
+/bin/ncursesw6-config:#!/bin/sh
+/bin/os-prober:#!/bin/sh
+/bin/padsp:#!/bin/sh
+/bin/padsp-32:#!/bin/sh
+/bin/pcre-config:#!/bin/sh
+/bin/pdf2ps:#!/bin/sh
+/bin/pf2afm:#!/bin/sh
+/bin/pfbtopfa:#!/bin/sh
+/bin/phpize:#!/bin/sh
+/bin/pinentry:#!/bin/sh
+/bin/pphs:#!/bin/sh
+/bin/printafm:#!/bin/sh
+/bin/ps2ascii:#!/bin/sh
+/bin/ps2epsi:#!/bin/sh
+/bin/ps2pdf:#!/bin/sh
+/bin/ps2pdf12:#!/bin/sh
+/bin/ps2pdf13:#!/bin/sh
+/bin/ps2pdf14:#!/bin/sh
+/bin/ps2pdfwr:#!/bin/sh
+/bin/ps2ps:#!/bin/sh
+/bin/ps2ps2:#!/bin/sh
+/bin/qmi-network:#!/bin/sh
+/bin/redhat_lsb_init:#!/bin/bash
+/bin/rpmargs:#!/bin/sh -ef
+/bin/rpmdev-cksum:#!/bin/sh
+/bin/rpmdev-diff:#!/bin/bash
+/bin/rpmdev-extract:#!/bin/bash
+/bin/rpmdev-md5:#!/bin/sh
+/bin/rpmdev-newinit:#!/bin/bash
+/bin/rpmdev-newspec:#!/bin/bash
+/bin/rpmdev-packager:#!/bin/bash
+/bin/rpmdev-setuptree:#!/bin/sh
+/bin/rpmdev-sha1:#!/bin/sh
+/bin/rpmdev-sha224:#!/bin/sh
+/bin/rpmdev-sha256:#!/bin/sh
+/bin/rpmdev-sha384:#!/bin/sh
+/bin/rpmdev-sha512:#!/bin/sh
+/bin/rpmdev-sum:#!/bin/sh
+/bin/rpmdev-wipetree:#!/bin/sh
+/bin/rpmelfsym:#!/bin/sh -ef
+/bin/rpmfile:#!/bin/sh -ef
+/bin/rpminfo:#!/bin/bash
+/bin/rpmls:#!/bin/sh
+/bin/rpmpeek:#!/bin/sh -ef
+/bin/rpmsodiff:#!/bin/sh -ef
+/bin/rpmsoname:#!/bin/sh -ef
+/bin/run-parts:#!/bin/bash
+/bin/scl_enabled:#!/bin/sh
+/bin/scl_source:#!/bin/bash
+/bin/scp-dbus-service:#!/bin/sh
+/bin/screenfetch:#!/usr/bin/env bash
+/bin/setup-nsssysinit:#!/bin/sh
+/bin/setup-nsssysinit.sh:#!/bin/sh
+/bin/smbprint:#!/bin/sh
+/bin/smbtar:#!/bin/sh
+/bin/smicache:#!/usr/bin/sh
+/bin/smistrip:#!/usr/bin/sh
+/bin/ssh-copy-id:#!/bin/sh
+/bin/start-pulseaudio-x11:#!/bin/sh
+/bin/startx:#!/bin/sh
+/bin/sushi:#!/bin/sh
+/bin/tcptraceroute:#!/bin/sh
+/bin/tgz:#!/bin/sh
+/bin/tzselect:#!/usr/bin/bash
+/bin/unicode_start:#!/bin/sh
+/bin/unicode_stop:#!/bin/sh
+/bin/unix-lpr.sh:#!/bin/sh
+/bin/update-ca-trust:#!/bin/sh
+/bin/update-crypto-policies:#!/bin/sh
+/bin/usb-devices:#!/bin/bash
+/bin/uz:#!/bin/sh
+/bin/vm-support:#!/bin/sh
+/bin/wftopfa:#!/bin/sh
+/bin/wsrep_sst_mysqldump:#!/bin/bash -ue
+/bin/wsrep_sst_rsync:#!/bin/bash -ue
+/bin/wsrep_sst_xtrabackup:#!/bin/bash -ue
+/bin/wsrep_sst_xtrabackup-v2:#!/bin/bash -ue
+/bin/xdg-desktop-icon:#!/bin/sh
+/bin/xdg-desktop-menu:#!/bin/sh
+/bin/xdg-email:#!/bin/sh
+/bin/xdg-icon-resource:#!/bin/sh
+/bin/xdg-mime:#!/bin/sh
+/bin/xdg-open:#!/bin/sh
+/bin/xdg-screensaver:#!/bin/sh
+/bin/xdg-settings:#!/bin/sh
+/bin/xdg-user-dir:#!/bin/sh
+/bin/xorg-x11-fonts-update-dirs:#!/bin/sh
+/bin/xzcmp:#!/bin/sh
+/bin/xzdiff:#!/bin/sh
+/bin/xzegrep:#!/bin/sh
+/bin/xzfgrep:#!/bin/sh
+/bin/xzgrep:#!/bin/sh
+/bin/xzless:#!/bin/sh
+/bin/xzmore:#!/bin/sh
+/bin/zcat:#!/bin/sh
+/bin/zcmp:#!/bin/sh
+/bin/zdiff:#!/bin/sh
+/bin/zegrep:#!/bin/sh
+/bin/zfgrep:#!/bin/sh
+/bin/zforce:#!/bin/sh
+/bin/zgrep:#!/bin/sh
+/bin/zipgrep:#!/bin/sh
+/bin/zless:#!/bin/sh
+/bin/zmore:#!/bin/sh
+/bin/znew:#!/bin/sh
+/sbin/addgnupghome:#!/bin/sh
+/sbin/airmon-ng:#!/bin/sh
+/sbin/akmods:#!/bin/bash -
+/sbin/akmodsbuild:#!/bin/bash
+/sbin/akmods-shutdown:#!/bin/bash
+/sbin/alsabat-test.sh:#!/bin/bash
+/sbin/alsa-info.sh:#!/bin/bash
+/sbin/apachectl:#!/bin/sh
+/sbin/applygnupgdefaults:#!/bin/sh
+/sbin/augenrules:#!/bin/bash
+/sbin/blkdeactivate:#!/bin/bash
+/sbin/cacertdir_rehash:#!/bin/sh
+/sbin/cbq:#!/bin/bash
+/sbin/cracklib-format:#!/bin/sh
+/sbin/create-cracklib-dict:#!/bin/sh
+/sbin/dhclient-script:#!/bin/bash
+/sbin/dkms:#!/bin/bash
+/sbin/dkms:#!/bin/sh
+/sbin/dkms:#!/bin/bash
+/sbin/ebtables-save:#!/bin/bash
+/sbin/fixfiles:#!/bin/bash
+/sbin/foomatic-getpjloptions:#!/usr/bin/bash
+/sbin/fsadm:#!/bin/bash
+/sbin/fsck.btrfs:#!/bin/sh -f
+/sbin/fsck.xfs:#!/bin/sh -f
+/sbin/grub2-get-kernel-settings:#!/bin/sh
+/sbin/grub2-setpassword:#!/bin/sh -e
+/sbin/ifdown:#!/bin/bash
+/sbin/ifup:#!/bin/bash
+/sbin/iptables-apply:#!/bin/bash
+/sbin/lvmconf:#!/bin/bash
+/sbin/lvmdump:#!/bin/bash
+/sbin/memtest-setup:#!/bin/bash
+/sbin/mkdict:#!/bin/sh
+/sbin/mpathconf:#!/bin/bash
+/sbin/new-kernel-pkg:#!/bin/bash
+/sbin/new-memtest-pkg:#!/bin/bash
+/sbin/osd_login:#!/bin/bash
+/sbin/plymouth-set-default-theme:#!/bin/bash
+/sbin/raid-check:#!/bin/bash
+/sbin/routel:#!/bin/sh
+/sbin/sendmail:#!/bin/bash
+/sbin/service:#!/bin/sh
+/sbin/setregdomain:#!/bin/sh
+/sbin/start-statd:#!/bin/sh
+/sbin/sushell:#!/bin/bash
+/sbin/sys-unconfig:#!/bin/sh
+/sbin/update-pciids:#!/bin/sh
+/sbin/usb_modeswitch_dispatcher:#!/usr/bin/jimsh
+/sbin/vpnc-disconnect:#!/bin/sh
+/sbin/weak-modules:#!/bin/bash
+/sbin/xfs_admin:#!/bin/sh -f
+/sbin/xfs_bmap:#!/bin/sh -f
+/sbin/xfs_freeze:#!/bin/sh -f
+/sbin/xfs_info:#!/bin/sh -f
+/sbin/xfs_metadump:#!/bin/sh -f
+/sbin/xfs_mkfile:#!/bin/sh -f
+/sbin/xfs_ncheck:#!/bin/sh -f
