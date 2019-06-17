@@ -1,8 +1,8 @@
--- MySQL dump 10.17  Distrib 10.3.15-MariaDB, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.17  Distrib 10.3.12-MariaDB, for Linux (x86_64)
 --
 -- Host: localhost    Database: ip
 -- ------------------------------------------------------
--- Server version	10.3.15-MariaDB-1
+-- Server version	10.3.12-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,29 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `gr`
+-- Table structure for table `ip`
 --
 
-DROP TABLE IF EXISTS `gr`;
+DROP TABLE IF EXISTS `ip`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `gr` (
+CREATE TABLE `ip` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ip` varchar(15) NOT NULL,
   `name` varchar(20) NOT NULL,
   `note` varchar(30) DEFAULT NULL,
   `oid` varchar(3) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `gr`
+-- Dumping data for table `ip`
 --
 
-LOCK TABLES `gr` WRITE;
-/*!40000 ALTER TABLE `gr` DISABLE KEYS */;
-/*!40000 ALTER TABLE `gr` ENABLE KEYS */;
+LOCK TABLES `ip` WRITE;
+/*!40000 ALTER TABLE `ip` DISABLE KEYS */;
+INSERT INTO `ip` VALUES (1,'192.168.10.1','renminlu_A','renminlu pos','001'),(2,'192.168.10.2','wudangshan_A','wudangshan_pos','002');
+/*!40000 ALTER TABLE `ip` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -50,7 +51,7 @@ DROP TABLE IF EXISTS `org`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `org` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(30) NOT NULL,
+  `oname` varchar(30) DEFAULT NULL,
   `oid` varchar(3) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=164 DEFAULT CHARSET=utf8mb4;
@@ -75,4 +76,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-17 18:00:43
+-- Dump completed on 2019-06-17 22:28:38
