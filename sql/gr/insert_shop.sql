@@ -1,4 +1,4 @@
-INSERT INTO `org` (oid,oname) VALUES
+INSERT INTO `shop` (sid,sname) VALUES
 ('001','五堰医药商场'),
 ('002','大岭路大药房'),
 ('003','郧阳区广场大药房'),

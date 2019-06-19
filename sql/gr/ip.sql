@@ -26,7 +26,7 @@ CREATE TABLE `ip` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ip` varchar(17) DEFAULT NULL,
   `hostname` varchar(20) DEFAULT NULL,
-  `oid` varchar(3) DEFAULT NULL,
+  `sid` varchar(3) DEFAULT NULL,
   `label` enum('A','B','C','D','E') DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `ip` (`ip`)
@@ -44,30 +44,29 @@ INSERT INTO `ip` VALUES (1,'192.168.96.101',NULL,'001','A'),(2,'192.168.96.2',NU
 UNLOCK TABLES;
 
 --
--- Table structure for table `org`
+-- Table structure for table `shop`
 --
 
-DROP TABLE IF EXISTS `org`;
+DROP TABLE IF EXISTS `shop`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `org` (
+CREATE TABLE `shop` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `oname` varchar(30) DEFAULT NULL,
-  `oid` varchar(3) DEFAULT NULL,
+  `sname` varchar(30) DEFAULT NULL,
+  `sid` varchar(3) DEFAULT NULL,
   `pinyin` varchar(20) DEFAULT NULL,
   `acronym` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=164 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `org`
+-- Dumping data for table `shop`
 --
 
-LOCK TABLES `org` WRITE;
-/*!40000 ALTER TABLE `org` DISABLE KEYS */;
-INSERT INTO `org` VALUES (1,'五堰医药商场','001',NULL,NULL),(2,'大岭路大药房','002',NULL,NULL),(3,'郧阳区广场大药房','003',NULL,NULL),(4,'武阳岭','004',NULL,NULL),(5,'田沟大药房','005',NULL,NULL),(6,'东岳大药房','006',NULL,NULL),(7,'四九大药房','007',NULL,NULL),(8,'三堰大药房','008',NULL,NULL),(9,'白浪大药房','009',NULL,NULL),(10,'银河小区大药房','010',NULL,NULL),(11,'轮胎厂大药房','011',NULL,NULL),(12,'擂鼓台大药房','012',NULL,NULL),(13,'车城路大药房','013',NULL,NULL),(14,'朝阳路大药房','014',NULL,NULL),(15,'顾家岗大药房','015',NULL,NULL),(16,'新疆路医药商场','016',NULL,NULL),(17,'老虎沟医药商场','017',NULL,NULL),(18,'武当山太和路第一大药房','018',NULL,NULL),(19,'武当山太和路第二大药房','019',NULL,NULL),(20,'郧阳区东岭大药房','020',NULL,NULL),(21,'老街大药房','021',NULL,NULL),(22,'江苏路大药房','022',NULL,NULL),(23,'上海路大药房','023',NULL,NULL),(24,'郧西黄山公园大药房','024',NULL,NULL),(25,'郧西观音大药房','025',NULL,NULL),(26,'人民南路大药房','026',NULL,NULL),(27,'东风第二中学医务室','027',NULL,NULL),(28,'金一地大药房','028',NULL,NULL),(29,'','029',NULL,NULL),(30,'柳林大药房','030',NULL,NULL),(31,'房县天一路大药房','031',NULL,NULL),(32,'界牌大药房','032',NULL,NULL),(33,'郧阳区茶店大药房','033',NULL,NULL),(34,'房县武当路第一大药房','034',NULL,NULL),(35,'杜家湾大药房','035',NULL,NULL),(36,'六堰大药房','036',NULL,NULL),(37,'房县九洲同大药房','037',NULL,NULL),(38,'房县车站大药房','038',NULL,NULL),(39,'郧阳区解放大道大药房','039',NULL,NULL),(40,'','040',NULL,NULL),(41,'阳光栖谷大药房','041',NULL,NULL),(42,'','042',NULL,NULL),(43,'郧西县西街大药房','043',NULL,NULL),(44,'武当山特区乔家院大药房','044',NULL,NULL),(45,'房县武当路第二大药','045',NULL,NULL),(46,'房县南街大药房（原福森店）','046',NULL,NULL),(47,'房县滨河大药房','047',NULL,NULL),(48,'艳湖社区大药房','048',NULL,NULL),(49,'宝丰镇第一大药房','049',NULL,NULL),(50,'总装厂大药房','050',NULL,NULL),(51,'郧西县车站大药房','051',NULL,NULL),(52,'郧西县环城北路大药房（原gr052西城店）','052',NULL,NULL),(53,'宝丰镇第二大药房','053',NULL,NULL),(54,'郧西县两府路大药房','054',NULL,NULL),(55,'犟河市场大药房','055',NULL,NULL),(56,'丹江口市六里坪镇第二大药房','056',NULL,NULL),(57,'郧县中岭巷大药房','057',NULL,NULL),(58,'郧县沿江大道大药房','058',NULL,NULL),(59,'宝丰镇第三大药房','059',NULL,NULL),(60,'竹溪县建设路大药房','060',NULL,NULL),(61,'郧西县富康大道大药房','061',NULL,NULL),(62,'','062',NULL,NULL),(63,'武当山特区广电大药房','063',NULL,NULL),(64,'郧西民联大药房','064',NULL,NULL),(65,'柳林路第二大药房','065',NULL,NULL),(66,'何家沟大药房','066',NULL,NULL),(67,'竹溪鄂陕大道','067',NULL,NULL),(68,'上海路二店大药房','068',NULL,NULL),(69,'竹溪县中医店','069',NULL,NULL),(70,'竹山县广场路大药房','070',NULL,NULL),(71,'车城西路大药房','071',NULL,NULL),(72,'郧西县天丰大药房','072',NULL,NULL),(73,'郧西县东营大药房','073',NULL,NULL),(74,'郧阳区西岭大药房','074',NULL,NULL),(75,'丹江口市六里坪镇第一大药房','075',NULL,NULL),(76,'华夏公馆大药房','076',NULL,NULL),(77,'王湾大药房','077',NULL,NULL),(78,'竹山县妇幼大药房','078',NULL,NULL),(79,'湖南路大药房','079',NULL,NULL),(80,'柏林大药房','080',NULL,NULL),(81,'竹山县西关大药房','081',NULL,NULL),(82,'竹溪钟鼓楼','082',NULL,NULL),(83,'轮胎厂第二大药房','083',NULL,NULL),(84,'六堰第二大药房','084',NULL,NULL),(85,'武当山永乐店','085',NULL,NULL),(86,'四一社区大药房','086',NULL,NULL),(87,'重庆路大药房','087',NULL,NULL),(88,'竹溪蒋家堰','088',NULL,NULL),(89,'竹溪水坪','089',NULL,NULL),(90,'竹山宝丰四','090',NULL,NULL),(91,'竹山人民路','091',NULL,NULL),(92,'竹山利民','092',NULL,NULL),(93,'竹山溢水','093',NULL,NULL),(94,'竹山旗舰','094',NULL,NULL),(95,'竹山惠民','095',NULL,NULL),(96,'竹山施洋路','096',NULL,NULL),(97,'竹山得胜80032','097',NULL,NULL),(98,'竹山双台','098',NULL,NULL),(99,'竹山明清','099',NULL,NULL),(100,'竹山秦古','100',NULL,NULL),(101,'','101',NULL,NULL),(102,'竹山官渡80029','102',NULL,NULL),(103,'竹山宝丰五','103',NULL,NULL),(104,'','104',NULL,NULL),(105,'竹山健民','105',NULL,NULL),(106,'竹山麻家渡','106',NULL,NULL),(107,'竹山上庸80008','107',NULL,NULL),(108,'竹山便民','108',NULL,NULL),(109,'竹山潘口','109',NULL,NULL),(110,'澳门街大药房','110',NULL,NULL),(111,'竹溪守金','111',NULL,NULL),(112,'江苏路第二大药房','112',NULL,NULL),(113,'燕林小区大药房','113',NULL,NULL),(114,'竹山擂鼓','114',NULL,NULL),(115,'竹山得胜二','115',NULL,NULL),(116,'竹山溢水二','116',NULL,NULL),(117,'竹山秦古二','117',NULL,NULL),(118,'北京小镇大药房','118',NULL,NULL),(119,'房县神龙','119',NULL,NULL),(120,'南化一','120',NULL,NULL),(121,'红塔','121',NULL,NULL),(122,'六里坪三8491086','122',NULL,NULL),(123,'解放路二','123',NULL,NULL),(124,'南化二','124',NULL,NULL),(125,'城东','125',NULL,NULL),(126,'金沙(X)','126',NULL,NULL),(127,'大润发','127',NULL,NULL),(128,'郧西县富康二','128',NULL,NULL),(129,'龙城大药房','129',NULL,NULL),(130,'凤凰香郡店','130',NULL,NULL),(131,'利民二千福','131',NULL,NULL),(132,'竹溪人医','132',NULL,NULL),(133,'邮电街','133',NULL,NULL),(134,'竹山麻家渡二','134',NULL,NULL),(135,'蓝山郡店','135',NULL,NULL),(136,'顾家岗名城港湾店','136',NULL,NULL),(137,'房县神龙二','137',NULL,NULL),(138,'红卫技校','138',NULL,NULL),(139,'红卫市场','139',NULL,NULL),(140,'顾家岗二店','140',NULL,NULL),(141,'中心药铺','141',NULL,NULL),(142,'温心药房','142',NULL,NULL),(143,'源河=河北路','143',NULL,NULL),(144,'竹溪水坪二','144',NULL,NULL),(145,'和昌','145',NULL,NULL),(146,'军店','146',NULL,NULL),(147,'房陵大道','147',NULL,NULL),(148,'十堰路','148',NULL,NULL),(149,'武当山四店','149',NULL,NULL),(150,'四方新城','150',NULL,NULL),(151,'宝丰六','151',NULL,NULL),(152,'军店二','152',NULL,NULL),(153,'武当山五店','153',NULL,NULL),(154,'东城国际','154',NULL,NULL),(155,'花果市场','155',NULL,NULL),(156,'银河社区诊所','156',NULL,NULL),(157,'中岭二','157',NULL,NULL),(158,'竹溪广场大药房','158',NULL,NULL),(159,'北京中路大药房=王府井','159',NULL,NULL),(160,'50厂西苑小区','160',NULL,NULL),(161,'白浪中路','161',NULL,NULL),(162,'51厂=东风大道','162',NULL,NULL),(163,'浙江路=和昌国际三期','163',NULL,NULL);
-/*!40000 ALTER TABLE `org` ENABLE KEYS */;
+LOCK TABLES `shop` WRITE;
+/*!40000 ALTER TABLE `shop` DISABLE KEYS */;
+/*!40000 ALTER TABLE `shop` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -79,4 +78,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-18 18:29:34
+-- Dump completed on 2019-06-19 10:28:16

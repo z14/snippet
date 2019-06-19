@@ -1,4 +1,4 @@
-insert into ip (label,oid,ip) values
+insert into ip (label,sid,ip) values
 ('A','001','192.168.96.101'),
 ('A','002','192.168.96.2'),
 ('A','003','192.168.105.3'),
