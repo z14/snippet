@@ -4,7 +4,7 @@
 
 set dns1=119.29.29.29
 set dns2=223.5.5.5
-set if=LAN
+set if=本地连接
 set subcom=ipv4
 call :is_xp
 
