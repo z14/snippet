@@ -16,6 +16,25 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Temporary table structure for view `ip`
+--
+
+DROP TABLE IF EXISTS `ip`;
+/*!50001 DROP VIEW IF EXISTS `ip`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `ip` (
+  `id` tinyint NOT NULL,
+  `ip` tinyint NOT NULL,
+  `label` tinyint NOT NULL,
+  `sid` tinyint NOT NULL,
+  `sname` tinyint NOT NULL,
+  `zid` tinyint NOT NULL,
+  `zname` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Table structure for table `pc`
 --
 
@@ -560,6 +579,25 @@ INSERT INTO `zone` VALUES (10,'宝丰');
 INSERT INTO `zone` VALUES (11,'竹溪');
 /*!40000 ALTER TABLE `zone` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Final view structure for view `ip`
+--
+
+/*!50001 DROP TABLE IF EXISTS `ip`*/;
+/*!50001 DROP VIEW IF EXISTS `ip`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `ip` AS select `pc`.`id` AS `id`,`pc`.`ip` AS `ip`,`pc`.`label` AS `label`,`pc`.`sid` AS `sid`,`shop`.`sname` AS `sname`,`shop`.`zid` AS `zid`,`zone`.`zname` AS `zname` from (`pc` left join (`shop` join `zone`) on(`pc`.`sid` = `shop`.`sid` and `shop`.`zid` = `zone`.`zid`)) order by `shop`.`zid` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -570,4 +608,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-22 18:23:06
+-- Dump completed on 2019-06-24 10:30:43
