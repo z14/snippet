@@ -49,7 +49,7 @@ CREATE TABLE `pc` (
   `label` enum('A','B','C','D','E') DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `ip` (`ip`)
-) ENGINE=InnoDB AUTO_INCREMENT=293 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=294 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -350,6 +350,7 @@ INSERT INTO `pc` VALUES (289,'192.168.97.64',NULL,'164','A');
 INSERT INTO `pc` VALUES (290,'192.168.97.164',NULL,'164','B');
 INSERT INTO `pc` VALUES (291,'192.168.96.248',NULL,'017','A');
 INSERT INTO `pc` VALUES (292,'192.168.112.189',NULL,'091','A');
+INSERT INTO `pc` VALUES (293,'192.168.9.238',NULL,'038','C');
 /*!40000 ALTER TABLE `pc` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -584,6 +585,25 @@ UNLOCK TABLES;
 --
 -- Dumping routines for database 'gr'
 --
+/*!50003 DROP PROCEDURE IF EXISTS `ip` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ip`(i varchar(16))
+begin
+select * from ip where ip like concat('%',i,'%');
+end ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `sid` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -681,4 +701,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-25 14:49:39
+-- Dump completed on 2019-06-26 10:13:40
