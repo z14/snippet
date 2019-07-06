@@ -35,6 +35,31 @@ SET character_set_client = utf8;
 SET character_set_client = @saved_cs_client;
 
 --
+-- Table structure for table `market`
+--
+
+DROP TABLE IF EXISTS `market`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `market` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `goodsid` varchar(20) NOT NULL,
+  `sid` varchar(5) NOT NULL,
+  `stock` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `market`
+--
+
+LOCK TABLES `market` WRITE;
+/*!40000 ALTER TABLE `market` DISABLE KEYS */;
+/*!40000 ALTER TABLE `market` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `pc`
 --
 
@@ -49,7 +74,7 @@ CREATE TABLE `pc` (
   `label` enum('A','B','C','D','E') DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `ip` (`ip`)
-) ENGINE=InnoDB AUTO_INCREMENT=294 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=304 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -351,6 +376,16 @@ INSERT INTO `pc` VALUES (290,'192.168.97.164',NULL,'164','B');
 INSERT INTO `pc` VALUES (291,'192.168.96.248',NULL,'017','A');
 INSERT INTO `pc` VALUES (292,'192.168.112.189',NULL,'091','A');
 INSERT INTO `pc` VALUES (293,'192.168.9.238',NULL,'038','C');
+INSERT INTO `pc` VALUES (294,'192.168.9.243',NULL,'037','C');
+INSERT INTO `pc` VALUES (295,'192.168.97.200',NULL,'156','B');
+INSERT INTO `pc` VALUES (296,'192.168.97.201',NULL,'156','A');
+INSERT INTO `pc` VALUES (297,'192.168.97.202',NULL,'156','D');
+INSERT INTO `pc` VALUES (298,'192.168.97.203',NULL,'156','D');
+INSERT INTO `pc` VALUES (299,'192.168.97.204',NULL,'156','D');
+INSERT INTO `pc` VALUES (300,'192.168.97.205',NULL,'156','D');
+INSERT INTO `pc` VALUES (301,'192.168.97.206',NULL,'156','D');
+INSERT INTO `pc` VALUES (302,'192.168.97.207',NULL,'156','D');
+INSERT INTO `pc` VALUES (303,'192.168.97.208',NULL,'156','D');
 /*!40000 ALTER TABLE `pc` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -701,4 +736,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-26 10:18:35
+-- Dump completed on 2019-07-06 14:32:10
