@@ -60,9 +60,14 @@ def getInfo(drugId):
         spec = info[2].div.div.text.strip()
     form = info[3].string
     facto = info[4].string
-    priceMin = soup.select_one('.maininfo div.info label.num').text.rstrip(' 起')
-    priceMax = soup.select_one('#slist .slist li p.money').string.strip().lstrip('¥')
     imgURL = 'https:' + soup.select_one('div.maininfo div.info dd img')['src']
+    priceMin = soup.select_one('.maininfo div.info label.num').text.rstrip(' 起')
+
+    priceMaxTag = soup.select_one('#slist .slist li p.money')
+    if priceMaxTag == None:
+        priceMax = ''
+    else:
+        priceMax = priceMaxTag.string.strip().lstrip('¥')
 
     # print(name, spec, form, facto)
     sql = f"insert into drug (drugId, name, spec, form, facto, ourPrice, priceMax, priceMin, imgURL) values ('{drugId}', '{name}', '{spec}', '{form}', '{facto}', '{ourPrice}', '{priceMax}', '{priceMin}', '{imgURL}')"
