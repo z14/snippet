@@ -62,9 +62,10 @@ def getInfo(drugId):
     facto = info[4].string
     priceMin = soup.select_one('.maininfo div.info label.num').text.rstrip(' 起')
     priceMax = soup.select_one('#slist .slist li p.money').string.strip().lstrip('¥')
+    imgURL = 'https:' + soup.select_one('div.maininfo div.info dd img')['src']
 
     # print(name, spec, form, facto)
-    sql = f"insert into drug (drugId, name, spec, form, facto, ourPrice, priceMax, priceMin) values ('{drugId}', '{name}', '{spec}', '{form}', '{facto}', '{ourPrice}', '{priceMax}', '{priceMin}')"
+    sql = f"insert into drug (drugId, name, spec, form, facto, ourPrice, priceMax, priceMin, imgURL) values ('{drugId}', '{name}', '{spec}', '{form}', '{facto}', '{ourPrice}', '{priceMax}', '{priceMin}', '{imgURL}')"
     try:
         cursor.execute(sql)
         # print(cursor.fetchall())
