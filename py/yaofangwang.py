@@ -11,6 +11,8 @@ conn = pymysql.connect(
         db='yfw',
         cursorclass=pymysql.cursors.DictCursor
         )
+cursor = conn.cursor()
+ourPrice = ''
 
 def main():
     global ourPrice
@@ -31,7 +33,8 @@ def main():
             if int(drugId) in seen:
                 print(drugId, 'already done, skipping it')
                 continue
-            getPrice(drugId)
+            getInfo(drugId)
+            # getPrice(drugId)
 
 def getSoup(url):
     headers = {'user-agent': 'fucku/0.0.1'}
@@ -39,7 +42,7 @@ def getSoup(url):
     return BeautifulSoup(html, 'html.parser')
 
 def getInfo(drugId):
-    url = 'https://www.yaofangwang.com/medicine-' + str(drugId) + '.html'
+    url = 'https://www.yaofangwang.com/medicine-' + str(drugId) + '.html?sort=sprice&sorttype=desc'
     print(url)
     soup = getSoup(url)
     
@@ -57,25 +60,24 @@ def getInfo(drugId):
         spec = info[2].div.div.text.strip()
     form = info[3].string
     facto = info[4].string
-    # pagenum = soup.select_one('#slist span.num').text.lstrip('1 / ')
-    pagenum = soup.select_one('#slist span.num').text.strip().lstrip('1 ').lstrip('/ ')
-    pagenum = int(pagenum)
-    # print(name, spec, form, facto, pagenum)
-    with conn.cursor() as cursor:
-        sql = f"insert into drug (drugId, name, spec, form, facto, ourPrice) values ('{drugId}', '{name}', '{spec}', '{form}', '{facto}', '{ourPrice}')"
-        try:
-            cursor.execute(sql)
-            # print(cursor.fetchall())
-        except:
-            print('We already have', drugId)
+    priceMin = soup.select_one('.maininfo div.info label.num').text.rstrip(' 起')
+    priceMax = soup.select_one('#slist .slist li p.money').string.strip().lstrip('¥')
+
+    # print(name, spec, form, facto)
+    sql = f"insert into drug (drugId, name, spec, form, facto, ourPrice, priceMax, priceMin) values ('{drugId}', '{name}', '{spec}', '{form}', '{facto}', '{ourPrice}', '{priceMax}', '{priceMin}')"
+    try:
+        cursor.execute(sql)
+        # print(cursor.fetchall())
+    except:
+        print('We already have', drugId)
     conn.commit()
-    return pagenum
 
 
 def getPrice(drugId):
-    pagenum = getInfo(drugId)
-    # if pagenum > 1:
-    for i in range(1, pagenum + 1):
+    url = 'https://www.yaofangwang.com/medicine-' + str(drugId) + '.html'
+    soup = getSoup(url)
+    pagenum = soup.select_one('#slist span.num').text.strip().lstrip('1 ').lstrip('/ ')
+    for i in range(2, int(pagenum) + 1):
         url = 'https://www.yaofangwang.com/medicine-' + str(drugId) + '-p' + str(i) + '.html'
         soup = getSoup(url)
         li = soup.select('#slist .slist li')
@@ -83,10 +85,10 @@ def getPrice(drugId):
             price = i.select_one('p.money').string.strip().lstrip('¥')
             retailer = i.select_one('a.stitle').string
             # print(price, retailer)
-            with conn.cursor() as cursor:
-                sql = f"insert into price (drugId, price, retailer) values ('{drugId}', '{price}', '{retailer}')"
-                cursor.execute(sql)
-                # print(cursor.fetchall())
+            sql = f"insert into price (drugId, price, retailer) values ('{drugId}', '{price}', '{retailer}')"
+            cursor.execute(sql)
+            # print(cursor.fetchall())
             conn.commit()
+
 
 main()
