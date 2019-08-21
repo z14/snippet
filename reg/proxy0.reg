@@ -1,0 +1,6 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings]
+"ProxyEnable"=dword:00000001
+"ProxyServer"="192.168.10.55:3128"
+"ProxyOverride"="10.132.128.83;192.168.*;192.168.200.9;<local>"
