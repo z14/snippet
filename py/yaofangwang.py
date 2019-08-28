@@ -1,9 +1,12 @@
 #!/usr/bin/python3
+# 抓取 https://www.yaofangwang.com/yaodian/379739/medicines.html 页面所有
 
+# 导入模块
 import requests
 from bs4 import BeautifulSoup
 import pymysql.cursors
 
+# 创建 mysql 对象
 conn = pymysql.connect(
         host='localhost',
         user='yfw',
@@ -37,6 +40,7 @@ def main():
             # getPrice(drugId)
 
 def getSoup(url):
+    """ 返回 BeautifulSoup 对象 """
     headers = {'user-agent': 'fucku/0.0.1'}
     html = requests.get(url, headers=headers).text
     return BeautifulSoup(html, 'html.parser')
