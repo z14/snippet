@@ -1,5 +1,8 @@
 #!/usr/bin/python3
+# 从数据库中获取批准文号的图片链接，调用腾讯云 API 从图片中识别文字，写入数据库
+# 腾讯云通用文字识别高精度版，每月免费调用 1000 次，超过即开始计费，慎用！
 
+# 导入模块
 import os
 import time
 import pymysql
@@ -11,6 +14,8 @@ from tencentcloud.common.profile.http_profile import HttpProfile
 from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
 from tencentcloud.ocr.v20181119 import ocr_client, models
 
+# 全局变量
+# 腾讯云授权信息
 secret_id = 'AKIDGxp9GNXyRfsJU0p1HLJ6nIXZOOC4e7HC'
 secret_key = '5wZ0B2h6HCxVs0lJeicw3dyykGZt56TZ'
 
