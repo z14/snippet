@@ -4,6 +4,7 @@
 
 # 导入模块
 import os
+import shutil
 import pymysql
 import redis
 import urllib.request
@@ -38,7 +39,7 @@ conn = pymysql.connect(
         cursorclass=pymysql.cursors.DictCursor
         )
 cursor = conn.cursor()
-sql = f'select drugId, imgURL from drug limit {offset},2000'
+sql = f'select drugId, imgURL from drug where approvalNum is null limit {offset},2000'
 cursor.execute(sql)
 # 获取 sql 查询结果
 result = cursor.fetchall()
@@ -75,3 +76,4 @@ for i in result:
 
 # 程序正常结束，删除 offset
 r.delete('offset')
+shutil.rmtree(imgdir)

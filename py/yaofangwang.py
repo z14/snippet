@@ -1,10 +1,14 @@
 #!/usr/bin/python3
-# 抓取 https://www.yaofangwang.com/yaodian/379739/medicines.html 页面所有
+# 抓取 https://www.yaofangwang.com/yaodian/379739/medicines.html 页面所有单品
 
 # 导入模块
+import redis
 import requests
 from bs4 import BeautifulSoup
 import pymysql.cursors
+
+# 创建 redis 对象
+r = redis.Redis(host='localhost', decode_responses=True)
 
 # 创建 mysql 对象
 conn = pymysql.connect(
@@ -17,6 +21,18 @@ conn = pymysql.connect(
 cursor = conn.cursor()
 ourPrice = ''
 
+sql = "select drugId from drug"
+cursor.execute(sql)
+res = cursor.fetchall()
+# print(res)
+for i in res:
+    # print(i['drugId'])
+    r.rpush('drugs', i['drugId'])
+alreadyHave = r.lrange('drugs', 0, -1)
+# print(alreadyHave)
+r.delete('drugs')
+
+
 def main():
     global ourPrice
     url = 'https://www.yaofangwang.com/yaodian/379739/medicines.html'
@@ -28,26 +44,22 @@ def main():
         li = soup.select('ul.goods3 li')
         for i in li:
             url = 'https:' + i.a['href']
-            print(url)
-            seen = []
+            # print(url)
             soup = getSoup(url)
             drugId = soup.select_one('#aFavorite')['data-mid']
             ourPrice = soup.select_one('#pricedl span').string.strip()
-            if int(drugId) in seen:
-                print(drugId, 'already done, skipping it')
-                continue
             getInfo(drugId)
             # getPrice(drugId)
 
 def getSoup(url):
     """ 返回 BeautifulSoup 对象 """
-    headers = {'user-agent': 'fucku/0.0.1'}
+    headers = {'user-agent': 'fuck/0.0.1'}
     html = requests.get(url, headers=headers).text
     return BeautifulSoup(html, 'html.parser')
 
 def getInfo(drugId):
     url = 'https://www.yaofangwang.com/medicine-' + str(drugId) + '.html?sort=sprice&sorttype=desc'
-    print(url)
+    # print(url)
     soup = getSoup(url)
     
     retailerCount = soup.select_one('#priceABtn b').string
@@ -55,16 +67,6 @@ def getInfo(drugId):
     if int(retailerCount) == 0:
         exit()
     
-    info = soup.select('div.maininfo div.info dd')
-    
-    name = info[0].string
-    if info[2].div == None:
-        spec = info[2].text.strip()
-    else:
-        spec = info[2].div.div.text.strip()
-    form = info[3].string
-    facto = info[4].string
-    imgURL = 'https:' + soup.select_one('div.maininfo div.info dd img')['src']
     priceMin = soup.select_one('.maininfo div.info label.num').text.rstrip(' 起')
 
     priceMaxTag = soup.select_one('#slist .slist li p.money')
@@ -73,8 +75,23 @@ def getInfo(drugId):
     else:
         priceMax = priceMaxTag.string.strip().lstrip('¥')
 
-    # print(name, spec, form, facto)
-    sql = f"insert into drug (drugId, name, spec, form, facto, ourPrice, priceMax, priceMin, imgURL) values ('{drugId}', '{name}', '{spec}', '{form}', '{facto}', '{ourPrice}', '{priceMax}', '{priceMin}', '{imgURL}')"
+
+    if drugId in alreadyHave:
+        print('Updating', drugId, '...')
+        sql = f"update drug set ourPrice = '{ourPrice}', priceMax = '{priceMax}', priceMin = '{priceMin}' where drugId = '{drugId}'"
+    else:
+        info = soup.select('div.maininfo div.info dd')
+        name = info[0].string
+        if info[2].div == None:
+            spec = info[2].text.strip()
+        else:
+            spec = info[2].div.div.text.strip()
+        form = info[3].string
+        facto = info[4].string
+        # print(name, spec, form, facto)
+        imgURL = 'https:' + soup.select_one('div.maininfo div.info dd img')['src']
+        print('Inserting', drugId, '...')
+        sql = f"insert into drug (drugId, name, spec, form, facto, ourPrice, priceMax, priceMin, imgURL) values ('{drugId}', '{name}', '{spec}', '{form}', '{facto}', '{ourPrice}', '{priceMax}', '{priceMin}', '{imgURL}')"
     try:
         cursor.execute(sql)
         # print(cursor.fetchall())
