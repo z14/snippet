@@ -2,13 +2,9 @@
 # 抓取 https://www.yaofangwang.com/yaodian/379739/medicines.html 页面所有单品
 
 # 导入模块
-import redis
 import requests
 from bs4 import BeautifulSoup
 import pymysql.cursors
-
-# 创建 redis 对象
-r = redis.Redis(host='localhost', decode_responses=True)
 
 # 创建 mysql 对象
 conn = pymysql.connect(
@@ -25,12 +21,10 @@ sql = "select drugId from drug"
 cursor.execute(sql)
 res = cursor.fetchall()
 # print(res)
+alreadyHave = []
 for i in res:
-    # print(i['drugId'])
-    r.rpush('drugs', i['drugId'])
-alreadyHave = r.lrange('drugs', 0, -1)
-# print(alreadyHave)
-r.delete('drugs')
+    alreadyHave.append(i['drugId'])
+print(alreadyHave)
 
 
 def main():
@@ -76,7 +70,7 @@ def getInfo(drugId):
         priceMax = priceMaxTag.string.strip().lstrip('¥')
 
 
-    if drugId in alreadyHave:
+    if int(drugId) in alreadyHave:
         print('Updating', drugId, '...')
         sql = f"update drug set ourPrice = '{ourPrice}', priceMax = '{priceMax}', priceMin = '{priceMin}' where drugId = '{drugId}'"
     else:
@@ -116,6 +110,5 @@ def getPrice(drugId):
             cursor.execute(sql)
             # print(cursor.fetchall())
             conn.commit()
-
 
 main()
