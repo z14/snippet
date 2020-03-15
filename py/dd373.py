@@ -23,7 +23,11 @@ for i in glist:
     days = i.select_one('.goods_time').text.strip()
 
     title = i.select_one('.goods_t .title a').text.strip()
+    gid =  i.select_one('.goods_t .title a')['href'].lstrip('/NeedDetail-').rstrip('.html')
     realmSum = i.select_one('.goods_t .mrgl7').find('div', attrs={'class': None}).select('a')
     realm = realmSum[1].text +  '\t' + realmSum[2].text + '\t' + realmSum[3].text
+
+    # write gid  to database;
+    # print(gid)
 
     print(int(float(price)),'\t', int(deposit), '\t', days, '\t', realm, '\t', title)
