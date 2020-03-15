@@ -24,6 +24,6 @@ for i in glist:
 
     title = i.select_one('.goods_t .title a').text.strip()
     realmSum = i.select_one('.goods_t .mrgl7').find('div', attrs={'class': None}).select('a')
-    realm = realmSum[1].text +  ' ' + realmSum[2].text + ' ' + realmSum[3].text
+    realm = realmSum[1].text +  '\t' + realmSum[2].text + '\t' + realmSum[3].text
 
     print(int(float(price)),'\t', int(deposit), '\t', days, '\t', realm, '\t', title)
