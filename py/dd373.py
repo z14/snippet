@@ -21,7 +21,7 @@ conn = pymysql.connect(
         )
 cursor = conn.cursor()
 
-sql = f"select * from job where source = '{source}' limit 1"
+sql = f"select * from job where source = '{source}' order by id desc limit 1"
 cursor.execute(sql)
 res = cursor.fetchone()
 if res:
