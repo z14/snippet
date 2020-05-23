@@ -1,0 +1,26 @@
+/* announcements */
+div#douyu_room_normal_player_danmuDom > div,
+div#douyu_room_normal_player_danmuDom > a {
+    opacity: 0;
+}
+
+
+/* danmu */
+div#room-html5-player > div > div + div + div + div {
+    opacity: 0;
+}
+
+/* danmu */
+div.comment-37342a {
+    opacity: 0;
+}
+
+/* player control */
+div#room-html5-player > div > div + div + div + div + div + div + div + div > div{
+}
+
+.controlbar-f41e38 {
+}
+
+/* close danmu button */
+div.right-e7ea5d .showdanmu-42b0ac {}
