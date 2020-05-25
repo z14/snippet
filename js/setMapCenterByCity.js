@@ -119,6 +119,8 @@ function appendDistros() {
 	let distrosOfCity = distros[selectedCity];
 	// clear cities
 	ulTag.innerHTML = "";
+	// clear all overlay
+	map.clearMap();
 	// append distros
 	for (let i = 0; i < distrosOfCity.length; i++) {
 		let li = liTag.cloneNode(true);
