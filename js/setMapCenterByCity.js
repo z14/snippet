@@ -124,11 +124,11 @@ function appendDistros() {
 	// append distros
 	for (let i = 0; i < distrosOfCity.length; i++) {
 		let li = liTag.cloneNode(true);
-		li.setAttribute('data-lat', distrosOfCity[i].coord[0]);
-		li.setAttribute('data-lng', distrosOfCity[i].coord[1]);
-		li.setAttribute('data-title', distrosOfCity[i].title);
-		li.setAttribute('data-address', distrosOfCity[i].addr);
-		li.setAttribute('data-tel', distrosOfCity[i].tel);
+		li.dataset.lat = distrosOfCity[i].coord[0];
+		li.dataset.lng = distrosOfCity[i].coord[1];
+		li.dataset.title = distrosOfCity[i].title;
+		li.dataset.address = distrosOfCity[i].addr;
+		li.dataset.tel = distrosOfCity[i].tel;
 		li.firstElementChild.append(distrosOfCity[i].title);
 		li.firstElementChild.nextElementSibling.firstElementChild.append(distrosOfCity[i].addr);
 		li.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling.append(distrosOfCity[i].tel);
