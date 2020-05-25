@@ -35,16 +35,12 @@ let div = {
 let distros = {
 	'十堰': [
 		{
-			lat: 111,
-			lng: 222,
 			coord: [110.783675, 32.653377],
 			title: '麦当劳(十堰公园路店)',
 			addr: 'addr1',
 			tel: 'tel1'
 		},
 		{
-			lat: 111,
-			lng: 222,
 			coord: [110.788138, 32.653377],
 			title: '麦当劳甜品站(人民北路店)',
 			addr: 'addr2',
@@ -53,16 +49,12 @@ let distros = {
 	],
 	'武汉': [
 		{
-			lat: 111,
-			lng: 222,
 			coord: [111, 111],
 			title: 'title1',
 			addr: 'addr1',
 			tel: 'tel1'
 		},
 		{
-			lat: 111,
-			lng: 222,
 			coord: [111, 111],
 			title: 'title2',
 			addr: 'addr2',
@@ -117,8 +109,6 @@ function appendCities() {
 		selectTagCity.appendChild(o);
 	}
 
-	// 
-	//setMapCenter(distrosOfCity[0].coord);
 	appendDistros();
 }
 
@@ -141,7 +131,6 @@ function appendDistros() {
 		li.firstElementChild.nextElementSibling.firstElementChild.append(distrosOfCity[i].addr);
 		li.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling.append(distrosOfCity[i].tel);
 		ulTag.appendChild(li);
-		//addMarker(distrosOfCity[i].coord[0], distrosOfCity[i].coord[1]);
 		addMarker(distrosOfCity[i].coord);
 	}
 
