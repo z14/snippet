@@ -132,6 +132,7 @@ function appendDistros() {
 		li.firstElementChild.append(distrosOfCity[i].title);
 		li.firstElementChild.nextElementSibling.firstElementChild.append(distrosOfCity[i].addr);
 		li.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling.append(distrosOfCity[i].tel);
+		li.addEventListener('click', showInfoWindow);
 		ulTag.appendChild(li);
 		addMarker(distrosOfCity[i].coord);
 	}
@@ -153,4 +154,12 @@ function addMarker(coord) {
 	});
 	marker.setPosition(coord);
 	map.add(marker);
+}
+
+function showInfoWindow() {
+    let infoWindow = new AMap.InfoWindow({
+        anchor: 'top-left',
+        content: this.dataset.title,
+    });
+    infoWindow.open(map, [this.dataset.lat, this.dataset.lng]);
 }
