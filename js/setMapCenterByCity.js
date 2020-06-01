@@ -46,19 +46,25 @@ let distros = {
 			addr: 'addr2',
 			tel: 'tel2'
 		},
+		{
+			coord: [110.791672, 32.635981],
+			title: '麦当劳(上海路店)',
+			addr: 'addr3',
+			tel: 'tel3'
+		}
 	],
 	'武汉': [
 		{
-			coord: [111, 111],
-			title: 'title1',
+			coord: [114.290111, 30.58153],
+			title: '麦当劳(中百黄陂广场店)',
 			addr: 'addr1',
 			tel: 'tel1'
 		},
 		{
-			coord: [111, 111],
-			title: 'title2',
+			coord: [114.293221, 30.578442],
+			title: '麦当劳(宝利金店)',
 			addr: 'addr2',
-			tel: 'tel3'
+			tel: 'tel2'
 		},
 	]
 };
@@ -121,31 +127,33 @@ function appendDistros() {
 	ulTag.innerHTML = "";
 	// clear all overlay
 	map.clearMap();
-	// append distros
-	for (let i = 0; i < distrosOfCity.length; i++) {
-		let li = liTag.cloneNode(true);
-		li.dataset.lat = distrosOfCity[i].coord[0];
-		li.dataset.lng = distrosOfCity[i].coord[1];
-		li.dataset.title = distrosOfCity[i].title;
-		li.dataset.address = distrosOfCity[i].addr;
-		li.dataset.tel = distrosOfCity[i].tel;
-		li.firstElementChild.append(distrosOfCity[i].title);
-		li.firstElementChild.nextElementSibling.firstElementChild.append(distrosOfCity[i].addr);
-		li.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling.append(distrosOfCity[i].tel);
-		li.addEventListener('click', showInfoWindow);
-		ulTag.appendChild(li);
-		addMarker(distrosOfCity[i].coord);
+	if (distrosOfCity) {
+    	// append distros
+    	for (let i = 0; i < distrosOfCity.length; i++) {
+    		let li = liTag.cloneNode(true);
+    		li.dataset.lat = distrosOfCity[i].coord[0];
+            li.dataset.lng = distrosOfCity[i].coord[1];
+            li.dataset.title = distrosOfCity[i].title;
+            li.dataset.address = distrosOfCity[i].addr;
+            li.dataset.tel = distrosOfCity[i].tel;
+    		li.firstElementChild.append(distrosOfCity[i].title);
+    		li.firstElementChild.nextElementSibling.firstElementChild.append(distrosOfCity[i].addr);
+    		li.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling.append(distrosOfCity[i].tel);
+    		li.addEventListener('click', showInfoWindow);
+    		ulTag.appendChild(li);
+    		addMarker(distrosOfCity[i].coord);
+    	}
+	
+    	// initially set map center to first distro of this city
+    	setMapCenter(distrosOfCity[0].coord);
 	}
-
-	// initially set map center to first distro of this city
-	setMapCenter(distrosOfCity[0].coord);
 }
 
 // cities of initical province
 appendCities();
 
 function setMapCenter(coord) {
-	map.setZoomAndCenter(15, coord);
+	map.setZoomAndCenter(14, coord);
 }
 
 function addMarker(coord) {
@@ -157,9 +165,48 @@ function addMarker(coord) {
 }
 
 function showInfoWindow() {
-    let infoWindow = new AMap.InfoWindow({
-        anchor: 'top-left',
-        content: this.dataset.title,
-    });
-    infoWindow.open(map, [this.dataset.lat, this.dataset.lng]);
+	let infoWindow = new AMap.InfoWindow({
+		anchor: 'top-left',
+		content: this.dataset.title,
+	});
+	infoWindow.open(map, [this.dataset.lat, this.dataset.lng]);
 }
+
+/* .appiontment section form cities selector */
+
+let appointmentSelectTagProv = document.querySelector('.province-selector select');
+appointmentSelectTagProv.addEventListener('change', appointmentAppendCities);
+let appointmentSelectTagCity = document.querySelector('.city-selector select');
+
+// append options to select#province
+for (let i = 0; i < provinces.length; i++) {
+	let o = document.importNode(optionTag);
+	o.append(provinces[i]);
+	if (provinces[i] == default_prov) {
+		o.setAttribute('selected', '');
+	}
+	appointmentSelectTagProv.appendChild(o);
+}
+
+// append options to select#city
+function appointmentAppendCities() {
+	// get selected province
+	//let selectedProv = this.options[this.selectedIndex].value;
+	let selectedProv = appointmentSelectTagProv.value;
+	// get cities of selected province
+	let cities = div[selectedProv];
+	// clear cities
+	appointmentSelectTagCity.innerHTML = "";
+	// append cities
+	for (let i = 0; i < cities.length; i++) {
+		let o = document.importNode(optionTag);
+		o.append(cities[i]);
+		if (cities[i] == default_city) {
+			o.setAttribute('selected', '');
+		}
+		appointmentSelectTagCity.appendChild(o);
+	}
+}
+
+// cities of initical province
+appointmentAppendCities();
