@@ -33,7 +33,7 @@ do
 done
 
 if [ ! -b "$device" ]; then
-    say 没有检测到U盘
+    echo -e $yellow 没有检测到U盘 $red
     exit
 fi
 
@@ -52,10 +52,8 @@ do
 done
 
 if [ -f $dir/$script ]; then
+    echo -e $yellow 正在执行脚步 $red
     . $dir/$script
-    say 正在执行脚步
 else
-    say 没有找到脚本
+    echo -e $yellow 没有找到脚本 $red
 fi
-
-say 可以拔掉U盘了
