@@ -9,5 +9,5 @@
 <#Tab::AltTab   ;LWin & Tab::AltTab
 <#Enter::Run Debian
 <#L::Return ;Screen Lock still be triggered
-<#<+H::<#<+Left
-<#<+L::<#<+Right
+<#<+H::#+Left
+<#<+L::#+Right
