@@ -81,12 +81,13 @@ def getInfo(drugId):
         else:
             spec = info[2].div.div.text.strip()
         form = info[3].string
-        facto = info[4].string
-        # print(name, spec, form, facto)
+        manufacturer = info[4].string
+        # print(name, spec, form, manufacturer)
         imgURL = 'https:' + soup.select_one('div.maininfo div.info dd img')['src']
         print('Inserting', drugId, '...')
-        sql = f"insert into drug (drugId, name, spec, form, facto, ourPrice, priceMax, priceMin, imgURL) values ('{drugId}', '{name}', '{spec}', '{form}', '{facto}', '{ourPrice}', '{priceMax}', '{priceMin}', '{imgURL}')"
+        sql = f"insert into drug (drugId, name, spec, form, manufacturer, ourPrice, priceMax, priceMin, imgURL) values ('{drugId}', '{name}', '{spec}', '{form}', '{manufacturer}', '{ourPrice}', '{priceMax}', '{priceMin}', '{imgURL}')"
     try:
+        print(sql)
         cursor.execute(sql)
         # print(cursor.fetchall())
     except:
