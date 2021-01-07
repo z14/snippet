@@ -47,7 +47,7 @@ def main():
 
 def getSoup(url):
     """ 返回 BeautifulSoup 对象 """
-    headers = {'user-agent': 'fuck/0.0.1'}
+    headers = {'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36'}
     html = requests.get(url, headers=headers).text
     return BeautifulSoup(html, 'html.parser')
 
