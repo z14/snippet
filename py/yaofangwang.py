@@ -41,7 +41,7 @@ def main():
             # print(url)
             soup = getSoup(url)
             drugId = soup.select_one('#aFavorite')['data-mid']
-            ourPrice = soup.select_one('#pricedl span').string.strip()
+            ourPrice = soup.select_one('#pricedl .money .num').string.strip()
             getInfo(drugId)
             # getPrice(drugId)
 
