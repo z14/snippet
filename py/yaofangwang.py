@@ -5,6 +5,8 @@
 import requests
 from bs4 import BeautifulSoup
 import pymysql.cursors
+import redis
+from progress.bar import Bar
 
 # 创建 mysql 对象
 conn = pymysql.connect(
@@ -15,35 +17,48 @@ conn = pymysql.connect(
         cursorclass=pymysql.cursors.DictCursor
         )
 cursor = conn.cursor()
-ourPrice = ''
+
+# 创建 redis 对象
+redis = redis.Redis(host='localhost', decode_responses=True)
 
 sql = "select drugId from drug"
 cursor.execute(sql)
 res = cursor.fetchall()
-# print(res)
 alreadyHave = []
 for i in res:
     alreadyHave.append(i['drugId'])
-print(alreadyHave)
-
 
 def main():
-    global ourPrice
-    url = 'https://www.yaofangwang.com/yaodian/379739/medicines.html'
-    soup = getSoup(url)
-    pageCount = soup.select_one('span.num').text.strip().lstrip('1 ').lstrip('/ ')
-    for i in range(1, int(pageCount) + 1):
-        url = f'https://www.yaofangwang.com/yaodian/379739/medicines.html?page={i}'
+    global drugs
+    drugs = redis.hgetall('drug')
+    if (len(drugs) == 0):
+        url = 'https://www.yaofangwang.com/yaodian/379739/medicines.html'
         soup = getSoup(url)
-        li = soup.select('ul.goods3 li')
-        for i in li:
-            url = 'https:' + i.a['href']
-            # print(url)
+        count = soup.select_one('.tabnav .count b').string.strip()
+        pageCount = soup.select_one('span.num').text.strip().lstrip('1 ').lstrip('/ ')
+        bar = Bar('正在获取商品编号...', max=int(count))
+        for i in range(1, int(pageCount) + 1):
+            url = f'https://www.yaofangwang.com/yaodian/379739/medicines.html?page={i}'
             soup = getSoup(url)
-            drugId = soup.select_one('#aFavorite')['data-mid']
-            ourPrice = soup.select_one('#pricedl .money .num').string.strip()
-            getInfo(drugId)
-            # getPrice(drugId)
+            li = soup.select('ul.goods3 li')
+            for i in li:
+                url = 'https:' + i.a['href']
+                # print(url)
+                soup = getSoup(url)
+                drugId = soup.select_one('#aFavorite')['data-mid']
+                ourPrice = soup.select_one('#pricedl .money .num').string.strip()
+                redis.hset('drug', drugId, ourPrice)
+                bar.next()
+        bar.finish()
+        drugs = redis.hgetall('drug')
+
+    bar = Bar('正在抓取商品信息...', max=len(drugs))
+    for i in drugs:
+        # getPrice(i)
+        getInfo(i)
+        bar.next()
+    bar.finish()
+
 
 def getSoup(url):
     """ 返回 BeautifulSoup 对象 """
@@ -71,8 +86,8 @@ def getInfo(drugId):
 
 
     if int(drugId) in alreadyHave:
-        print('Updating', drugId, '...')
-        sql = f"update drug set ourPrice = '{ourPrice}', priceMax = '{priceMax}', priceMin = '{priceMin}' where drugId = '{drugId}'"
+        #print('Updating', drugId, '...')
+        sql = f"update drug set ourPrice = '{drugs[drugId]}', priceMax = '{priceMax}', priceMin = '{priceMin}' where drugId = '{drugId}'"
     else:
         info = soup.select('div.maininfo div.info dd')
         name = info[0].string
@@ -84,11 +99,12 @@ def getInfo(drugId):
         manufacturer = info[4].string
         # print(name, spec, form, manufacturer)
         imgURL = 'https:' + soup.select_one('div.maininfo div.info dd img')['src']
-        print('Inserting', drugId, '...')
-        sql = f"insert into drug (drugId, name, spec, form, manufacturer, ourPrice, priceMax, priceMin, imgURL) values ('{drugId}', '{name}', '{spec}', '{form}', '{manufacturer}', '{ourPrice}', '{priceMax}', '{priceMin}', '{imgURL}')"
+        #print('Inserting', drugId, '...')
+        sql = f"insert into drug (drugId, name, spec, form, manufacturer, ourPrice, priceMax, priceMin, imgURL) values ('{drugId}', '{name}', '{spec}', '{form}', '{manufacturer}', '{drugs[drugId]}', '{priceMax}', '{priceMin}', '{imgURL}')"
     try:
-        print(sql)
+        #print(sql)
         cursor.execute(sql)
+        redis.hdel('drug', drugId)
         # print(cursor.fetchall())
     except:
         print('We already have', drugId)
