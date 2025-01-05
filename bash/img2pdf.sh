@@ -9,6 +9,8 @@
 ############### Main Part ###############
 
 # Images to pdf
+# See https://askubuntu.com/questions/246647/convert-a-directory-of-jpeg-files-to-a-single-pdf-document
+
 for i in *
 do
     if [ -d "$i" ]; then
@@ -32,5 +34,5 @@ mkdir -p $dir
 for i in *.pdf
 do
     echo "$i"
-    ocrmypdf -l chi_sim1 $i $dir/$i
+    ocrmypdf -l chi_sim $i $dir/$i
 done
